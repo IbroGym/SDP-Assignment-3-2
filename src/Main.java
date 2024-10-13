@@ -1,16 +1,18 @@
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        Television tv = new Television();
+        RemoteControl remote = new RemoteControl(6);
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        remote.setCommand(0, new TurnOnCommand(tv));
+        remote.setCommand(1, new TurnOffCommand(tv));
+        remote.setCommand(2, new VolumeUpCommand(tv));
+        remote.setCommand(3, new VolumeDownCommand(tv));
+        remote.setCommand(4, new NextChannelCommand(tv));
+        remote.setCommand(5, new PreviousChannelCommand(tv));
+
+        remote.pressButton(0); // Включить телевизор
+        remote.pressButton(2); // Прибавить громкость
+        remote.pressButton(4); // Сменить канал на следующий
+        remote.pressButton(1); // Выключить телевизор
     }
 }
